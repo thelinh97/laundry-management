@@ -3,7 +3,7 @@ import "./style/Footer.css";
 
 export default function Footerr() {
   return (
-    <div class="footer">
+    <div className="footer">
       <p>Laundry Management</p>
     </div>
   );

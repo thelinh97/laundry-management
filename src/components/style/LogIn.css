@@ -1,0 +1,72 @@
+.login {
+  background-color: #f5f5f5;
+  color: #313131;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.input-group {
+  margin: 1em 0;
+  position: relative;
+  margin-top: 40px;
+}
+from {
+  padding: 1em 1.2em;
+  background-color: white;
+  box-shadow: 0.4px 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 1em;
+  text-shadow: 0.4px 4px 5px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  height: 300px;
+}
+from h2 {
+  text-align: center;
+  font-weight: 400;
+  user-select: none;
+}
+from input {
+  margin: 8px auto;
+  display: block;
+  border: none;
+  border-bottom: 1px solid dodgerblue;
+  outline: none;
+  padding: 6px 4px;
+}
+from label {
+  position: absolute;
+  top: 4px;
+  left: 22px;
+  font-weight: 400;
+  font-size: 14px;
+  color: gray;
+  transition: 200ms ease;
+}
+input:focus + label,
+input:valid + label {
+  top: -14px;
+  left: 22px;
+  font-size: 10px;
+}
+from button {
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+  padding: 0.5em 1em;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: 200ms;
+  width: 100%;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.login-fail {
+  margin-top: 20px;
+  color: red;
+  text-align: center;
+  font-weight: 300;
+}

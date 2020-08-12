@@ -7,6 +7,8 @@ import SeeOrder from "./components/SeeOrder";
 import Contact from "./components/Contact";
 import Footerr from "./components/Footerr";
 import { Switch, Route } from "react-router-dom";
+import LogIn from "./components/LogIn";
+import PrivateRoute from "./components/PrivateRoute";
 
 const { Header, Footer, Content } = Layout;
 
@@ -18,9 +20,9 @@ function App() {
       </Header>
       <Content>
         <Switch>
-          <Route exact path="/" component={AddOrder} />
-          <Route path="/seeOrder" component={SeeOrder} />
-          <Route path="/contact" component={Contact} />
+          <PrivateRoute exact path="/" component={AddOrder} />
+          <PrivateRoute path="/seeOrder" component={SeeOrder} />
+          <Route path="/login" component={LogIn} />
         </Switch>
       </Content>
       <Footer>
