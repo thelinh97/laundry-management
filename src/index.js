@@ -4,14 +4,14 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ProvideAuth } from "./contextApi/use-Auth";
+import { ProvideFirebase } from "./contextApi/use-Firebase";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <ProvideAuth>
+      <ProvideFirebase>
         <App />
-      </ProvideAuth>
+      </ProvideFirebase>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

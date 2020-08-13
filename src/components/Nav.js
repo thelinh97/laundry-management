@@ -1,13 +1,12 @@
 import React from "react";
 import "./style/Nav.css";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../contextApi/use-Auth";
+import { useFirebase } from "../contextApi/use-Firebase";
 import { useHistory } from "react-router-dom";
-import { wait } from "@testing-library/react";
 
 export default function Nav() {
   const history = useHistory();
-  const { signout, user } = useAuth();
+  const { signout, user } = useFirebase();
   const logOut = async () => {
     await signout();
     history.push("/login");

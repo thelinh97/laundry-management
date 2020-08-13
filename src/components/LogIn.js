@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import "./style/LogIn.css";
-import { useAuth } from "../contextApi/use-Auth";
+import { useFirebase } from "../contextApi/use-Firebase";
 import { useHistory } from "react-router-dom";
+import { message } from "antd";
 
 const LogIn = () => {
-  const { signin, loginFail } = useAuth();
+  const { signin, loginFail } = useFirebase();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
   const submit = async () => {
     await signin(email, password);
     history.push("/");
+    message.info("ok");
   };
 
   return (

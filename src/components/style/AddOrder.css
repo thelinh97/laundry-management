@@ -1,0 +1,12 @@
+.select-group {
+  margin: 1em 0;
+  position: relative;
+  margin-top: 30px;
+}
+.select-group select {
+  margin: 8px auto;
+  display: block;
+  border: none;
+  outline: none;
+  padding: 6px 4px;
+}

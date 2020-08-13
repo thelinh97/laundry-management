@@ -1,26 +1,30 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
-import { auth } from "firebase";
+import { auth, database } from "firebase";
 import firebaseConfig from "../config";
 
 // Add your Firebase credentials
 
-const authContext = createContext();
+const firebaseContext = createContext();
 
 // Provider component that wraps your app and makes auth object ...
 // ... available to any child component that calls useAuth().
-export function ProvideAuth({ children }) {
-  const auth = useProvideAuth();
-  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+export function ProvideFirebase({ children }) {
+  const valueFirebase = useProvideFirebase();
+  return (
+    <firebaseContext.Provider value={valueFirebase}>
+      {children}
+    </firebaseContext.Provider>
+  );
 }
 
 // Hook for child components to get the auth object ...
 // ... and re-render when it changes.
-export const useAuth = () => {
-  return useContext(authContext);
+export const useFirebase = () => {
+  return useContext(firebaseContext);
 };
 
 // Provider hook that creates auth object and handles state
-function useProvideAuth() {
+function useProvideFirebase() {
   const [user, setUser] = useState(null);
   const [loginFail, setLoginFail] = useState(null);
 
@@ -47,7 +51,23 @@ function useProvideAuth() {
         localStorage.clear();
       });
   };
-
+  const addOrder = (order) => {
+    return database()
+      .ref("order/" + order.phone)
+      .set({
+        name: order.name,
+        phone: order.phone,
+        type: order.type,
+        mass: order.mass,
+        time: order.time,
+      })
+      .then(() => {
+        alert("Thêm thành công");
+      })
+      .catch(() => {
+        alert("Thêm thất bại");
+      });
+  };
   // Subscribe to user on mount
   // Because this sets state in the callback it will cause any ...
   // ... component that utilizes this hook to re-render with the ...
@@ -71,5 +91,6 @@ function useProvideAuth() {
     loginFail,
     signin,
     signout,
+    addOrder,
   };
 }
