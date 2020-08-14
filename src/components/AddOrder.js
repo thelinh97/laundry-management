@@ -37,6 +37,7 @@ const AddOrder = () => {
         mass: mass,
         type: type,
         time: time,
+        money: money,
       };
       if (order) {
         addOrder(order);
@@ -48,7 +49,7 @@ const AddOrder = () => {
   useEffect(() => {
     const unSetInterVal = setInterval(() => {
       setTime(timeMoment);
-    }, 1000);
+    }, 60000);
     return () => clearInterval(unSetInterVal);
   }, []);
 

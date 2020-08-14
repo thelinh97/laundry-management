@@ -27,6 +27,7 @@ export const useFirebase = () => {
 function useProvideFirebase() {
   const [user, setUser] = useState(null);
   const [loginFail, setLoginFail] = useState(null);
+  const [data, setData] = useState([]);
 
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
@@ -60,6 +61,7 @@ function useProvideFirebase() {
         type: order.type,
         mass: order.mass,
         time: order.time,
+        money: order.money,
       })
       .then(() => {
         alert("Thêm thành công");
@@ -84,6 +86,14 @@ function useProvideFirebase() {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
+  useEffect(() => {
+    database()
+      .ref("order/")
+      .on("value", (data) => {
+        const array = data !== [] ? Object.entries(data.val()) : [];
+        setData(array);
+      });
+  }, []);
 
   // Return the user object and auth methods
   return {
@@ -92,5 +102,6 @@ function useProvideFirebase() {
     signin,
     signout,
     addOrder,
+    data,
   };
 }
